@@ -24,7 +24,6 @@ def jinzhi(key):
 
 if __name__ == '__main__':
     key = '2AF5'
-    # key = '1A'
     result = jinzhi(key)
     print(result)
     # mlis = ['sd', 'sdf', 'tew', 'df4rs']
