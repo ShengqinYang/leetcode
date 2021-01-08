@@ -16,7 +16,7 @@ def start_hook():
     print(device)
 
     # 应用包名
-    app_package_name = "com.qidian.QDReader"  # 起点
+    app_package_name = "com.qidian_app.QDReader"  # 起点
     try:
         # pid = device.spawn([app_package_name])
         # device.resume(pid)
