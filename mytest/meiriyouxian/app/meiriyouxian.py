@@ -11,7 +11,7 @@ def start_hook():
     print(device)
     # 应用包名
     app_package_name = "cn.missfresh.application"
-    # app_package_name = "com.qidian.QDReader" # 抖音极速
+    # app_package_name = "com.qidian_app.QDReader" # 抖音极速
     # try:
     # processes = device.enumerate_processes()
     # for process in processes:
