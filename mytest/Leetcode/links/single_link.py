@@ -19,6 +19,7 @@
         12）.两个有序的链表合并
         13）.删除链表倒数第 n 个结点
         14）.求链表的中间结点
+        15）.链表两两反转，例如：1-2-3-4 --> 2-1-4-3
 应用场景：如何用链表来实现 最近最少使用策略LRU 缓存淘汰策略呢？
 """
 
@@ -166,7 +167,7 @@ class SingleLink():
 
 class Solution():
     def reverse(self, link):
-        '''10）.单链表反转reverse  利用哨兵'''
+        '''10）.单链表反转reverse  利用哨兵，时间复杂度O(n)'''
         cur = link.head
         pre = None
         while cur:
@@ -176,6 +177,18 @@ class Solution():
             cur = temp
         return pre
 
+    def swap_pairs(self, link):
+        '''
+         15）.链表两两反转，例如：1-2-3-4 --> 2-1-4-3
+        '''
+        pre, pre.next = link, link.head
+        while pre.next and pre.next.next:
+            a = pre.next
+            b = a.next
+            pre.next, b.next, a.next = b, a, b.next
+            pre = a
+        return link.next
+
     def merge(self, l1, l2):
         '''
         12）.两个有序的链表合并
@@ -184,7 +197,6 @@ class Solution():
             输入：1->2->4, 1->3->4
             输出：1->1->2->3->4->4
         '''
-
         l1 = l1.head
         l2 = l2.head
         node = Node(0)
@@ -204,20 +216,20 @@ class Solution():
         return node
 
     def check_circle(self, link):
-        '''11）.链表中环的检测,快慢指针法，如果有环，那么快指针绕一圈会和慢指针重合'''
+        '''11）.链表中环的检测,快慢指针法，如果有环，那么快指针绕一圈会和慢指针重合,时间复杂度O(n)'''
         fast = link.head
         slow = link.head
         while slow and fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-            if slow is fast:
+            if slow is fast:  # 易错点：是item和next都相等，错误写法：fast.item == slow.item
                 return True
         return False
 
 
 def travel_link(link):
-    cur = link
-    while cur != None:
+    cur = link.head
+    while cur:
         print(cur.item, end=' ')
         cur = cur.next
 
@@ -252,6 +264,7 @@ if __name__ == '__main__':
     l1.append(1)
     l1.append(2)
     l1.append(3)
+    l1.append(4)
     l2 = SingleLink()
     l2.append(8)
     l2.append(9)
@@ -260,11 +273,16 @@ if __name__ == '__main__':
 
     s = Solution()
     # 合并
-    m = s.merge(l1, l2)
-    print(m)
-    travel_link(m)
+    # m = s.merge(l1, l2)
+    # print(m)
+    # travel_link(m)
     # 反转
     # result = s.reverse(l1)
     # travel_link(result)
     # 检测环
     # print(s.check_circle(l1))
+    # 两两交换
+    # travel_link(l1)
+    r = s.swap_pairs(l1)
+    print(r.item, r.next.item, r.next.next.item, r.next.next.next.item)
+    travel_link(r)
