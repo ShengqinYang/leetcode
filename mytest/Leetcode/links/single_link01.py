@@ -103,7 +103,7 @@ def check_circle(link):
     while fast and fast.next and slow:
         fast = fast.next.next
         slow = slow.next
-        if fast == slow:
+        if fast == slow:  # 易错点：是item和next都相等，错误写法：fast.item == slow.item
             return True
     return False
 
@@ -146,8 +146,12 @@ if __name__ == '__main__':
     slink = SingleLink()
     slink.head_add(2)
     slink.append(2)
+    slink.append(2)
+    slink.append(2)
     slink.append(3)
     slink.append(4)
     slink.append(5)
-    slink.delete(2)
+    # slink.delete(2)
     slink.travel()
+    result = check_circle(slink)
+    print(result)
