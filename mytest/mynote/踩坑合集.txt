@@ -1,0 +1,42 @@
+踩坑：
+1.生成数据库版本的问题
+	坑一：如果建了测试或者无用的version,不要轻易手动删除，版本号有继承关系
+	      a6eb8f4c9fd4_create_luxury_price_comparison_basics_.py
+
+	坑二：不要轻易回退版本【alembic downgrade -1】：
+			如果downgrade里有删表语句【 op.drop_table('luxury_price_comparison_basics')】，回退等于删表。
+			如果downgrade里没有删表语句，回退完了之后再次【alembic upgrade head 更新到最新版】回报错数据表已存在的错
+
+建表流程：1.建model【luxury_comparison.py】
+		  2.生成表版本【alembic revision -m 'create luxury_price_comparison_basics table'】
+			补充未完成的建表信息：a6eb8f4c9fd4_create_luxury_price_comparison_basics_.py
+		  3.更新同步表结构到数据库：【alembic upgrade head】
+		  alembic revision -m 'create meiriyouxian_citys table'
+
+问题：数据表版本回退问题？
+	1.如有删表语句，回退的话是不是就删表了？
+	2.如果无删表语句，回退不会删表，但是再次同步表结构的话，会报错，该表已存在？
+	3.如果同时多人开发建了新数据表版本，依赖了上次down_revision，会不会冲突？
+
+	4.excel数据导入数据表里，怎么做？数据表放那个地方怎么配置？
+	5.看看我现在建的表结构是否有问题？
+	
+坑三：ERROR [alembic.util.messaging] Multiple head revisions are present for given argument 'head'; please specify a specific target revision, '<branchname>@head' to narrow to a specific head, or 'heads' for all heads
+FAILED: Multiple head revisions are present for given argument 'head'; please specify a specific target revision, '<branchname>@head' to narrow to a specific head, or 'heads' for all heads
+
+解决：1.切到自己的分支下，2.alembic merge heads，3.push origin ysq/7880,4.远程合并
+
+	
+新增表字段
+alembic revision -m "add columns to mojing_details"
+alembic revision -m "add episode_id to bilibili_cheeses"
+alembic revision -m "alter columns type meiriyouxian"
+alembic revision -m "add index to dedao_list"
+
+def upgrade():
+    op.add_column('mojing_details', sa.Column('category_id', sa.BigInteger, nullable=True, comment='一级分类id'))
+    op.add_column('mojing_details', sa.Column('category', sa.String, nullable=True, comment='一级分类'))
+
+def downgrade():
+    op.drop_column('mojing_details', 'category_id')
+    op.drop_column('mojing_details', 'category')
