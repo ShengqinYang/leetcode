@@ -1,7 +1,7 @@
 *.pyc
 settings.ini
 .DS_Store
-.idea
+*.idea/*
 log/*
 logs/*
 run.py
