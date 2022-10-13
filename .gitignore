@@ -2,12 +2,14 @@
 settings.ini
 .DS_Store
 *.idea/*
+.idea/*
 log/*
 logs/*
 run.py
 .vscode/
 *.xmllogs
 *.xml
+*.iml
 statics/*
 .python-version
 node_modules/
