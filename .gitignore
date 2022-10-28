@@ -26,3 +26,5 @@ monitors/craw.egg-info/
 monitors/build/*
 monitors/dist/*
 venv/
+*test*
+*/test*
