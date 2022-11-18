@@ -1,4 +1,4 @@
-# 26. 删除有序数组中的重复项
+# 26. 删除有序数组中的重复项-双指针思路
 class Solution:
     def removeDuplicates(self, nums):
         length = len(nums)
