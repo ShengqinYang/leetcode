@@ -108,12 +108,17 @@ class WangHeap:
 
 if __name__ == '__main__':
     max_capacity = 100
-    myheap = WangHeap(max_capacity, items=[])
-    myheap.insert(1)
-    myheap.insert(2)
-    myheap.insert(13)
-    myheap.insert(4)
-    rs = myheap.insert(16)
+    # myheap = WangHeap(max_capacity, items=[])
+    # myheap.insert(1)
+    # myheap.insert(2)
+    # myheap.insert(13)
+    # myheap.insert(4)
+    # rs = myheap.insert(16)
+    # print(rs)
+    # nrs = myheap.remove_top()
+    # print(nrs)
+    items = [12, 11, 10, 9, 6, 7, 8]
+    myheap = WangHeap(max_capacity, items)
+    rs = myheap.insert(13)
     print(rs)
-    nrs = myheap.remove_top()
-    print(nrs)
+

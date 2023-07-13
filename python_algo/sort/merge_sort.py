@@ -81,11 +81,36 @@ def merge_sort_way2(array: list):
     return merge(left, right)
 
 
+def merge_sort_way3(array):
+    lenght = len(array)
+    if lenght <= 1:
+        return array
+    m = lenght // 2
+    left = merge_sort_way2(array[:m])
+    right = merge_sort_way2(array[m:])
+    return merge3(left, right)
+
+
+def merge3(left, right):
+    new_list = []
+    ll, rr = 0, 0
+    while ll < len(left) and rr < len(right):
+        if left[ll] < right[rr]:
+            new_list.append(left[ll])
+            ll += 1
+        else:
+            new_list.append(right[rr])
+            rr += 1
+    new_list += left[ll:]
+    new_list += right[rr:]
+    return new_list
+
+
 if __name__ == '__main__':
     array = [11, 8, 3, 9, 7, 1, 2, 5, 12]
-    # r = merge_sort_way2(array)
-    # print(r)
-    low = 0
-    high = len(array) - 1
-    sorted = merge_sort(array, low, high)
-    print(array)
+    r = merge_sort_way3(array)
+    print(r)
+    # low = 0
+    # high = len(array) - 1
+    # sorted = merge_sort(array, low, high)
+    # print(array)
