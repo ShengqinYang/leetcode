@@ -28,3 +28,4 @@ monitors/dist/*
 venv/
 *test*
 */test*
+*.idea
