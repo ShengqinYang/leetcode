@@ -58,3 +58,4 @@ if __name__ == '__main__':
     my = Mycalss()
     newnode = my.add_two_nums(node1, node2)
     print([newnode.item, newnode.next.item, newnode.next.next.item])
+
