@@ -12,9 +12,6 @@
 '''
 
 
-
-
-
 class Myclass():
     def __init__(self, nums, target):
         self.nums = nums
@@ -41,20 +38,12 @@ class Myclass():
             if hash_.get(ta) and i != hash_.get(ta):
                 return [i, hash_.get(ta)]
 
-    def test(self):
-        hash_ = dict(zip(nums, range(len(nums))))
-        print(hash_)
-        for i in range(len(self.nums)):
-            ta = self.target - hash_.get(nums[i])
-            if hash_.get(ta) and i != hash_.get(ta):
-                return [i,hash_.get(ta)]
-
 
 if __name__ == '__main__':
     # nums = [2, 7, 11, 15]
     # target = 9
     nums = [3, 3, 3]
     target = 6
-    # my = Myclass(nums, target)
-    # # print(my.sum_of_two_nums_01)
-    # print(my.sum_of_two_nums_02)
+    my = Myclass(nums, target)
+    # print(my.sum_of_two_nums_01)
+    print(my.sum_of_two_nums_02)
