@@ -24,17 +24,25 @@ class Solution:
                 pass
         return res
 
+    def maxprofit2(self, nums):
+        if len(nums)<1:
+            return 0
+        min_price = nums[0]
+        max_proft = 0
+        for i in range(1, len(nums)):
+            if nums[i] > min_price:
+                max_proft = max(max_proft, nums[i] - min_price)
+            if nums[i] < min_price:
+                min_price = nums[i]
+        return max_proft
+        
+        
 
 if __name__ == '__main__':
     stack = [7, 1, 5, 6, 3, 2, 4, 0]
-    # s = Solution()
-    # print(s.maxProfit(stack))
-    min, result = stack[0], 0
-    for i in range(1, len(stack)):
-        if stack[i] < min:
-            min = stack[i]
-        elif stack[i] > result:
-            result = stack[i] - min
-        else:
-            pass
-    print(min, result)
+    # stack = [2, 1, 5, 6, 3, 2, 4, 10]
+
+    s = Solution()
+    print(s.maxProfit(stack))
+    print(s.maxprofit2(stack))
+
